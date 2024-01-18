@@ -1,4 +1,3 @@
-// redux/authSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
@@ -19,7 +18,7 @@ const initialState: AuthState = {
 	isAuthenticated: false,
 	users: [
 		{ username: "admin", password: "admin" },
-		{ username: "test", password: "test" },
+		{ username: "maris", password: "maris" },
 	],
 	error: null,
 };
@@ -30,7 +29,7 @@ const authSlice = createSlice({
 	reducers: {
 		login: (state, action: PayloadAction<User>) => {
 			state.user = action.payload;
-			state.error = null; // Reset error when attempting login
+			state.error = null;
 
 			console.log("User state ", state.user);
 			if (state.user) {
@@ -45,10 +44,13 @@ const authSlice = createSlice({
 			state.user = null;
 			state.isAuthenticated = false;
 		},
+		clearLoginError: (state) => {
+			state.error = null;
+		},
 	},
 });
 
-export const { login, logout } = authSlice.actions;
+export const { login, logout, clearLoginError } = authSlice.actions;
 
 export const selectUser = (state: RootState) => state.auth.user;
 export const selectIsAuthenticated = (state: RootState) => state.auth.isAuthenticated;

@@ -16,9 +16,9 @@ const Navbar: React.FC = () => {
 	};
 
 	return (
-		<nav className="flex justify-between p-5">
-			<h1>LogoImage</h1>
-			<ul>
+		<nav className="flex justify-between px-10 py-5 bg-purple-700 text-white">
+			<h1>LOGO</h1>
+			<ul className="flex gap-4">
 				<li>
 					<Link href="/">Home</Link>
 				</li>
