@@ -3,25 +3,37 @@
 import { useDispatch } from "react-redux";
 import { login } from "../store/slices/authSlice";
 import { RootState } from "@/store/store";
-import Link from "next/link";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { useEffect } from "react";
 
 const Login = () => {
 	const dispatch = useDispatch();
 	const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
+	const error = useSelector((state: RootState) => state.auth.error);
 
 	const handleLogin = (e) => {
 		e.preventDefault();
-		dispatch(login());
+		const res = dispatch(login({ username: "teste", password: "test" }));
+		console.log("Login Result ", res, error);
+		if (error) {
+			return toast.error(error);
+		}
+		if (isAuthenticated) toast("Login Successfully...");
 	};
 
-	console.log(isAuthenticated);
+	useEffect(() => {
+		if (error) {
+			toast.error(error);
+		}
+		if (isAuthenticated) toast("Login Successfully...");
+	}, [error, isAuthenticated]);
 
 	return (
 		<div className="min-h-screen flex items-center justify-center">
 			<div className="w-full max-w-md p-6 bg-white rounded-md shadow-md">
 				<h1 className="text-3xl font-semibold mb-4">Login</h1>
-				<form>
+				<form onSubmit={handleLogin}>
 					<div className="mb-4">
 						<label htmlFor="username" className="block text-sm font-medium text-gray-600">
 							Username:
