@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, FormEvent } from "react";
 import { useDispatch } from "react-redux";
 import { clearLoginError, login } from "../store/slices/authSlice";
 import { RootState } from "@/store/store";
@@ -17,7 +17,7 @@ const Login = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 
-	const handleLogin = (e) => {
+	const handleLogin = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		dispatch(login({ username, password }));
 
