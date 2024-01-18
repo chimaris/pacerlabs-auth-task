@@ -6,27 +6,39 @@ import { RootState } from "@/store/store";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
 	const dispatch = useDispatch();
 	const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
 	const error = useSelector((state: RootState) => state.auth.error);
+	const router = useRouter();
 
 	const handleLogin = (e) => {
 		e.preventDefault();
-		const res = dispatch(login({ username: "teste", password: "test" }));
+		const res = dispatch(login({ username: "test", password: "test" }));
 		console.log("Login Result ", res, error);
 		if (error) {
 			return toast.error(error);
 		}
-		if (isAuthenticated) toast("Login Successfully...");
+		if (isAuthenticated) {
+			toast("Login Successfully...");
+			setTimeout(() => {
+				router.push("/dashboard");
+			}, 2000);
+		}
 	};
 
 	useEffect(() => {
 		if (error) {
 			toast.error(error);
 		}
-		if (isAuthenticated) toast("Login Successfully...");
+		if (isAuthenticated) {
+			toast("Login Successfully...");
+			setTimeout(() => {
+				router.push("/dashboard");
+			}, 2000);
+		}
 	}, [error, isAuthenticated]);
 
 	return (
