@@ -80,7 +80,7 @@ const Login = () => {
 							placeholder="Enter your password"
 						/>
 					</div>
-					<button type="submit" className="bg-purple-700 text-white p-2 rounded-md w-full" onClick={handleLogin}>
+					<button type="submit" className="bg-purple-700 text-white p-2 rounded-md w-full">
 						Login
 					</button>
 				</form>
