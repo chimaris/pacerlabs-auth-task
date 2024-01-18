@@ -8,7 +8,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 Before you begin, ensure you have met the following requirements:
 
-- Node.js and Yarn installed on your machine.
+- Node.js installed on your machine.
 
 ## Installation
 
